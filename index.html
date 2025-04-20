@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyPath Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>StudyPath Tracker</h1>
+      <p class="subtitle">Your Integrated Study Schedule Companion</p>
+    </div>
+  </header>
+  
+  <main class="container">
+    <div class="app-container">
+      <div id="calendar"></div>
+      
+      <div class="sidebar">
+        <div class="points-system">
+          <h3>Your Study Points</h3>
+          <div class="points-display" id="total-points">0</div>
+          <div class="points-progress">
+            <div class="progress-bar" id="progress-bar"></div>
+            <div class="progress-text" id="progress-text">0% to next badge</div>
+          </div>
+          <div class="badges-container" id="badges-container">
+            <!-- Badges will appear here -->
+          </div>
+        </div>
+        
+        <div class="day-details" id="day-details">
+          <div class="day-header">
+            <div class="day-title">Select a day</div>
+            <div class="day-points">+0 pts</div>
+          </div>
+          <ul class="task-list" id="task-list">
+            <li class="empty-state">Click on a day in the calendar to view tasks</li>
+          </ul>
+        </div>
+
+        <div class="quick-stats">
+          <h3>Weekly Progress</h3>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value" id="completed-tasks">0</div>
+              <div class="stat-label">Tasks Done</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="study-hours">0</div>
+              <div class="stat-label">Study Hours</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="streak-days">0</div>
+              <div class="stat-label">Day Streak</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <div class="modal" id="task-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">Task Details</h3>
+        <button class="modal-close" id="modal-close">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- Task details will appear here -->
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="settings-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Study Path Settings</h3>
+        <button class="modal-close" id="settings-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="study-path">Study Path</button>
+          <button class="tab-btn" data-tab="appearance">Appearance</button>
+          <button class="tab-btn" data-tab="notifications">Notifications</button>
+        </div>
+        
+        <div class="tab-content active" id="study-path-tab">
+          <div class="form-group">
+            <label for="study-path-select">Select Study Path:</label>
+            <select id="study-path-select" class="form-control">
+              <option value="default">Default Path</option>
+              <option value="iitm">IIT Madras BS DS</option>
+              <option value="cp">Competitive Programming</option>
+              <option value="ju">JU College</option>
+              <option value="custom">Custom Path</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Customize Categories:</label>
+            <div id="category-container">
+              <!-- Categories will be added here dynamically -->
+            </div>
+            <button id="add-category" class="btn btn-secondary">+ Add Category</button>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="appearance-tab">
+          <div class="form-group">
+            <label>Theme Color:</label>
+            <input type="color" id="theme-color" value="#4361ee">
+          </div>
+          <div class="form-group">
+            <label>Dark Mode:</label>
+            <label class="switch">
+              <input type="checkbox" id="dark-mode-toggle">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="notifications-tab">
+          <div class="form-group">
+            <label>Daily Reminders:</label>
+            <label class="switch">
+              <input type="checkbox" id="reminders-toggle" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="form-group">
+            <label>Reminder Time:</label>
+            <input type="time" id="reminder-time" value="18:00" class="form-control">
+          </div>
+        </div>
+        
+        <button id="save-settings" class="btn btn-primary">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <button id="settings-btn" class="settings-btn"><i class="fas fa-cog"></i></button>
+
+  <div class="floating-btn" id="quick-add-btn">
+    <i class="fas fa-plus"></i>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
